@@ -1,20 +1,21 @@
 package org.springframework.samples.mvc.redirect;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.test.web.servlet.MockMvc;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.test.web.servlet.MockMvc;
-
 public class RedirectControllerTests {
 
 	private MockMvc mockMvc;
 
-	@Before
+	@BeforeEach
 	public void setup() throws Exception {
 		this.mockMvc = standaloneSetup(new RedirectController(new DefaultFormattingConversionService()))
 				.alwaysExpect(status().isFound()).build();

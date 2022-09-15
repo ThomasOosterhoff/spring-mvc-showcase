@@ -1,5 +1,11 @@
 package org.springframework.samples.mvc.data;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.MediaType;
+import org.springframework.samples.mvc.data.standard.StandardArgumentsController;
+import org.springframework.test.web.servlet.MockMvc;
+
 import static org.hamcrest.Matchers.startsWith;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -7,16 +13,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.http.MediaType;
-import org.springframework.samples.mvc.data.standard.StandardArgumentsController;
-import org.springframework.test.web.servlet.MockMvc;
-
 public class StandardArgumentsControllerTests {
 	private MockMvc mockMvc;
 
-	@Before
+	@BeforeEach
 	public void setup() throws Exception {
 		this.mockMvc = standaloneSetup(new StandardArgumentsController()).alwaysExpect(status().isOk()).build();
 	}

@@ -3,8 +3,6 @@ package org.springframework.samples.mvc.config;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.samples.mvc.async.TimeoutCallableProcessingInterceptor;
 import org.springframework.samples.mvc.convert.MaskFormatAnnotationFormatterFactory;
@@ -14,7 +12,6 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -25,9 +22,9 @@ import org.springframework.web.util.UrlPathHelper;
 // DispatcherServlet context: defines Spring MVC infrastructure
 // and web application components
 
-@Configuration
-@ComponentScan(basePackages = "org.springframework.samples.mvc")
-@EnableWebMvc
+//@Configuration
+//@ComponentScan(basePackages = "org.springframework.samples.mvc")
+//@EnableWebMvc
 @EnableScheduling
 public class WebMvcConfig implements WebMvcConfigurer {
 
@@ -56,7 +53,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		registry.jsp("/WEB-INF/views/", ".jsp");
+		registry.jsp("/META-INF/views/", ".jsp");
 	}
 
 	@Override

@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>fileupload | mvc-showcase</title>
-	<link href="<c:url value="/resources/form.css" />" rel="stylesheet"  type="text/css" />		
+	<link href="<c:url value="/resources/form.css" />" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="<c:url value="/resources/jquery/1.6/jquery.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/jqueryform/2.8/jquery.form.js" />"></script>	
 </head>

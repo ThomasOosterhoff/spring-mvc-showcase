@@ -1,29 +1,25 @@
 package org.springframework.samples.mvc.async;
 
-import static org.hamcrest.Matchers.instanceOf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.samples.mvc.AbstractContextControllerTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+import static org.hamcrest.Matchers.instanceOf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+
+@ExtendWith(SpringExtension.class)
 public class CallableControllerTests extends AbstractContextControllerTests {
 
 	private MockMvc mockMvc;
 
-	@Before
+	@BeforeEach
 	public void setup() throws Exception {
 		this.mockMvc = webAppContextSetup(this.wac).build();
 	}
@@ -50,7 +46,7 @@ public class CallableControllerTests extends AbstractContextControllerTests {
 
 		this.mockMvc.perform(asyncDispatch(mvcResult))
 			.andExpect(status().isOk())
-			.andExpect(forwardedUrl("/WEB-INF/views/views/html.jsp"))
+			.andExpect(forwardedUrl("/META-INF/resources/WEB-INF/jsp/views/html.jsp"))
 			.andExpect(model().attribute("foo", "bar"))
 			.andExpect(model().attribute("fruit", "apple"));
 	}

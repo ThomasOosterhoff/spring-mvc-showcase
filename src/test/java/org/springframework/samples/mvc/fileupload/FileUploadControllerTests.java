@@ -1,16 +1,17 @@
 package org.springframework.samples.mvc.fileupload;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.samples.mvc.AbstractContextControllerTests;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.samples.mvc.AbstractContextControllerTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 public class FileUploadControllerTests extends AbstractContextControllerTests {
 
 	@Test
@@ -19,7 +20,7 @@ public class FileUploadControllerTests extends AbstractContextControllerTests {
 		MockMultipartFile file = new MockMultipartFile("file", "orig", null, "bar".getBytes());
 
 		webAppContextSetup(this.wac).build()
-				.perform(fileUpload("/fileupload").file(file))
+				.perform(multipart("/fileupload").file(file))
 				.andExpect(model().attribute("message", "File 'orig' uploaded successfully"));
 	}
 
