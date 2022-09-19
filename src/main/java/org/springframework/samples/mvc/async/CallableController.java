@@ -2,6 +2,7 @@ package org.springframework.samples.mvc.async;
 
 import java.util.concurrent.Callable;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
