@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.samples.mvc.AbstractContextControllerTests;
+import org.springframework.samples.mvc.views.ViewsController;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -15,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { CallableController.class })
 public class CallableControllerTests extends AbstractContextControllerTests {
 
 	private MockMvc mockMvc;
@@ -46,7 +49,7 @@ public class CallableControllerTests extends AbstractContextControllerTests {
 
 		this.mockMvc.perform(asyncDispatch(mvcResult))
 			.andExpect(status().isOk())
-			.andExpect(forwardedUrl("/META-INF/resources/WEB-INF/jsp/views/html.jsp"))
+			.andExpect(forwardedUrl("views/html"))
 			.andExpect(model().attribute("foo", "bar"))
 			.andExpect(model().attribute("fruit", "apple"));
 	}

@@ -1,6 +1,6 @@
 package org.springframework.samples.mvc.redirect;
 
-import javax.inject.Inject;
+//import javax.inject.Inject;
 
 import org.joda.time.LocalDate;
 
@@ -20,7 +20,6 @@ public class RedirectController {
 	
 	private final ConversionService conversionService;
 
-	@Inject
 	public RedirectController(ConversionService conversionService) {
 		this.conversionService = conversionService;
 	}

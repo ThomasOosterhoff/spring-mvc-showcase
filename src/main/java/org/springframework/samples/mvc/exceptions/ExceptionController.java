@@ -22,4 +22,9 @@ public class ExceptionController {
 		return "IllegalStateException handled!";
 	}
 
+	@ExceptionHandler
+	public String handle(BusinessException e) {
+		return "Handled BusinessException";
+	}
+
 }

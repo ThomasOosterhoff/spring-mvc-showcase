@@ -1,11 +1,14 @@
 package org.springframework.samples.mvc.data;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.samples.mvc.AbstractContextControllerTests;
+import org.springframework.samples.mvc.mapping.MappingController;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -16,7 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-@ExtendWith(SpringExtension.class)
+@Import(RequestDataController.class)
+@WebMvcTest(RequestDataController.class)
 public class DataControllerTests extends AbstractContextControllerTests {
 
 	private MockMvc mockMvc;
@@ -79,7 +83,7 @@ public class DataControllerTests extends AbstractContextControllerTests {
 					.contentType(MediaType.TEXT_PLAIN)
 					.content("foo".getBytes()))
 				.andExpect(content().string(
-						"Posted request body 'foo'; headers = {Content-Type=[text/plain], Content-Length=[3]}"));
+						"Posted request body 'foo'; headers = [Content-Type:\"text/plain\", Content-Length:\"3\"]"));
 	}
 
 }

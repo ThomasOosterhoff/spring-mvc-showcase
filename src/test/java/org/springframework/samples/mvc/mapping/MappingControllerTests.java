@@ -3,6 +3,10 @@ package org.springframework.samples.mvc.mapping;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.samples.mvc.AbstractContextControllerTests;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -14,7 +18,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-@ExtendWith(SpringExtension.class)
+@Import(MappingController.class)
+@WebMvcTest(MappingController.class)
 public class MappingControllerTests extends AbstractContextControllerTests {
 
 	private MockMvc mockMvc;
@@ -84,8 +89,8 @@ public class MappingControllerTests extends AbstractContextControllerTests {
 	@Test
 	public void byProducesAcceptXml() throws Exception {
 		this.mockMvc.perform(get("/mapping/produces").accept(MediaType.APPLICATION_XML))
-				.andExpect(xpath("/javaBean/foo").string("bar"))
-				.andExpect(xpath("/javaBean/fruit").string("apple"));
+				.andExpect(xpath("/JavaBean/foo").string("bar"))
+				.andExpect(xpath("/JavaBean/fruit").string("apple"));
 	}
 
 	@Test
@@ -98,8 +103,8 @@ public class MappingControllerTests extends AbstractContextControllerTests {
 	@Test
 	public void byProducesXmlExtension() throws Exception {
 		this.mockMvc.perform(get("/mapping/produces.xml"))
-				.andExpect(xpath("/javaBean/foo").string("bar"))
-				.andExpect(xpath("/javaBean/fruit").string("apple"));
+				.andExpect(xpath("/JavaBean/foo").string("bar"))
+				.andExpect(xpath("/JavaBean/fruit").string("apple"));
 	}
 
 }

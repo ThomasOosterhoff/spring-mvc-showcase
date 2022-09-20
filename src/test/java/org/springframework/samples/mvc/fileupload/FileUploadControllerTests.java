@@ -14,7 +14,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { FileUploadController.class })
-
 public class FileUploadControllerTests extends AbstractContextControllerTests {
 
 	@Test

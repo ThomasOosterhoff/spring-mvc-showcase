@@ -3,7 +3,12 @@ package org.springframework.samples.mvc.exceptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.samples.mvc.AbstractContextControllerTests;
+import org.springframework.samples.mvc.mapping.MappingController;
+import org.springframework.samples.mvc.views.ViewsController;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -12,7 +17,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-@ExtendWith(SpringExtension.class)
+@Import(ExceptionController.class)
+@WebMvcTest(ExceptionController.class)
 public class ExceptionControllerTests extends AbstractContextControllerTests {
 
 	private MockMvc mockMvc;

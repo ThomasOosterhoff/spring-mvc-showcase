@@ -3,8 +3,13 @@ package org.springframework.samples.mvc.messageconverters;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.samples.mvc.AbstractContextControllerTests;
+import org.springframework.samples.mvc.mapping.MappingController;
+import org.springframework.samples.mvc.views.ViewsController;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -13,7 +18,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-@ExtendWith(SpringExtension.class)
+@Import(MessageConvertersController.class)
+@WebMvcTest(MessageConvertersController.class)
 public class MessageConvertersControllerTests extends AbstractContextControllerTests {
 
 	private static String URI = "/messageconverters/{action}";
@@ -50,13 +56,13 @@ public class MessageConvertersControllerTests extends AbstractContextControllerT
 	@Test
 	public void writeForm() throws Exception {
 		this.mockMvc.perform(get(URI, "form"))
-				.andExpect(content().contentType(MediaType.APPLICATION_FORM_URLENCODED))
+				.andExpect(content().contentType(MediaType.APPLICATION_FORM_URLENCODED+";charset=UTF-8"))
 				.andExpect(content().string("foo=bar&fruit=apple"));
 	}
 
 	private static String XML =
 			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-			"<javaBean><foo>bar</foo><fruit>apple</fruit></javaBean>";
+			"<JavaBean><foo>bar</foo><fruit>apple</fruit></JavaBean>";
 
 	@Test
 	public void readXml() throws Exception {

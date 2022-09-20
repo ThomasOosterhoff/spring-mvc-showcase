@@ -15,9 +15,9 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 
 	<properties>
-		<java-version>1.8</java-version>
+		<java-version>17</java-version>
 		<org.springframework-version>5.0.4.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.8.1</org.aspectj-version>
+		<org.aspectj-version>1.9.9.1</org.aspectj-version>
 	</properties>
 
 	<dependencies>
@@ -25,19 +25,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- Spring -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework</groupId>-->
-<!--			<artifactId>spring-context</artifactId>-->
-<!--			<version>${org.springframework-version}</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework</groupId>-->
-<!--			<artifactId>spring-webmvc</artifactId>-->
-<!--			<version>${org.springframework-version}</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+		</dependency>
 
-<!--		 Spring Security (used for CSRF protection only)-->
+		<!--		 Spring Security (used for CSRF protection only)-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -51,6 +48,33 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- Rome Atom+RSS -->
+		<dependency>
+			<groupId>com.rometools</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.9.0</version>
+		</dependency>
+		<!-- Spring -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework</groupId>-->
+<!--			<artifactId>spring-context</artifactId>-->
+<!--			<version>${org.springframework-version}</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework</groupId>-->
+<!--			<artifactId>spring-webmvc</artifactId>-->
+<!--			<version>${org.springframework-version}</version>-->
+<!--		</dependency>-->
 		<!-- Logging -->
 <!--		<dependency>-->
 <!--			<groupId>org.apache.logging.log4j</groupId>-->
@@ -64,11 +88,11 @@
 <!--		</dependency>-->
 
 		<!-- @Inject -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>javax.inject</groupId>-->
+<!--			<artifactId>javax.inject</artifactId>-->
+<!--			<version>1</version>-->
+<!--		</dependency>-->
 
 		<!-- Servlet API -->
 <!--		<dependency>-->
@@ -77,21 +101,14 @@
 <!--			<version>3.1.0</version>-->
 <!--			<scope>provided</scope>-->
 <!--		</dependency>-->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
-		</dependency>
+
 <!--		<dependency>-->
 <!--			<groupId>javax.servlet.jsp</groupId>-->
 <!--			<artifactId>javax.servlet.jsp-api</artifactId>-->
 <!--			<version>2.3.2-b02</version>-->
 <!--			<scope>provided</scope>-->
 <!--		</dependency>-->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
+
 
 		<!-- Jackson JSON Processor -->
 <!--		<dependency>-->
@@ -100,12 +117,7 @@
 <!--			<version>2.9.3</version>-->
 <!--		</dependency>-->
 
-		<!-- Rome Atom+RSS -->
-		<dependency>
-			<groupId>com.rometools</groupId>
-			<artifactId>rome</artifactId>
-			<version>1.9.0</version>
-		</dependency>
+
 
 		<!-- JSR 303 with Hibernate Validator -->
 		<dependency>
@@ -116,7 +128,7 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.0.7.Final</version>
+			<version>8.0.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.el</groupId>
@@ -157,6 +169,11 @@
 			<version>2.7.3</version>
 			<scope>test</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.integration</groupId>-->
+<!--			<artifactId>spring-integration-xml</artifactId>-->
+<!--			<version>5.5.14</version>-->
+<!--		</dependency>-->
 
 <!--		<dependency>-->
 <!--			<groupId>org.springframework</groupId>-->
@@ -170,18 +187,16 @@
 <!--			<version>4.12</version>-->
 <!--			<scope>test</scope>-->
 <!--		</dependency>-->
-		<dependency>
-			<groupId>org.xmlunit</groupId>
-			<artifactId>xmlunit-matchers</artifactId>
-			<version>2.5.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jayway.jsonpath</groupId>
-			<artifactId>json-path</artifactId>
-			<version>2.4.0</version>
-			<scope>test</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.xmlunit</groupId>-->
+<!--			<artifactId>xmlunit-matchers</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.jayway.jsonpath</groupId>-->
+<!--			<artifactId>json-path</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
   		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
@@ -240,7 +255,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.11</version>
+				<version>1.14.0</version>
 				<dependencies>
 					<dependency>
 						<groupId>org.aspectj</groupId>

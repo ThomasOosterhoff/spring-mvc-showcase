@@ -53,7 +53,7 @@ public class DeferredResultControllerTests extends AbstractContextControllerTest
 
 		this.mockMvc.perform(asyncDispatch(mvcResult))
 			.andExpect(status().isOk())
-			.andExpect(forwardedUrl("/META-INF/resources/WEB-INF/jsp/views/html.jsp"))
+			.andExpect(forwardedUrl("views/html"))
 			.andExpect(model().attributeExists("javaBean"));
 	}
 
